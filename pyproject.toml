@@ -1,6 +1,6 @@
 [project]
 name = "notegod"
-version = "0.0.2"
+version = "0.0.3"
 description = "notegod"
 readme = "README.md"
 requires-python = ">=3.10"
