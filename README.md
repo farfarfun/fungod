@@ -17,13 +17,35 @@ pip install .
 ## 用法示例
 
 ```python
-from fungod.conf.GuaCi import gua_ci          # 六十四卦卦名/卦象字典
-from fungod.data.gua_ci.gwill_solution import solution_dict  # 每一卦的原文/白话解读
+from fungod.changes.b_changes import godwill
 
-print(gua_ci["i_111111"])   # ['乾卦', '乾为天', '刚健中正']
-print(solution_dict["i_111111"])
+# 执行一次占卜，返回 (卦象编码, 卦名信息, 卦辞原文)
+key, name, solution = godwill()
+print(name)       # ['乾卦', '乾为天', '刚健中正']
+print(solution)   # 该卦的卦辞原文
 ```
 
-`fungod/changes/GuaCi.py` 和 `fungod/data/gua_ci/gwill_solution.py` 这两个数据模块可以正常单独导入使用。
+也可以直接查表：
 
-已知问题：`fungod/changes/BChanges.py`（对外暴露的占卜入口 `godwill()` 以及 `BChanges` 类所在文件）顶部残留了一处历史导入 `from gwill.conf.GuaCi import *`，指向一个不存在的 `gwill` 包（应为 `fungod`），导致目前 `from fungod.changes.BChanges import godwill` 会直接抛出 `ModuleNotFoundError: No module named 'gwill'`，这部分占卜功能和基于 `turtle` 的卦象绘图（`DrawGossip.py`）暂时无法使用，需要修复导入路径。
+```python
+from fungod.conf.gua_ci import gua_ci                          # 六十四卦卦名/断语字典
+from fungod.data.gua_ci.gwill_solution import solution_dict    # 每一卦的原文/白话解读
+
+print(gua_ci["i_111111"])          # ['乾卦', '乾为天', '刚健中正']
+print(solution_dict["i_111111"])   # 乾卦原文
+```
+
+`fungod/conf/gua_ci.py` 和 `fungod/data/gua_ci/gwill_solution.py` 这两个数据模块可以正常单独导入使用。
+
+---
+
+## 关于 farfarfun
+
+[farfarfun](https://github.com/farfarfun) 是一个专注于实用工具库的开源组织，
+涵盖云存储、数据处理、AI、多媒体与开发工具链等方向。
+
+- 🏠 组织主页：<https://github.com/farfarfun>
+- 📦 PyPI：<https://pypi.org/user/niuliangtao/>
+- 📧 联系：farfarfun@qq.com
+
+本项目基于 [MIT](LICENSE) 协议开源。
