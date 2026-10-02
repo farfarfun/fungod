@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from turtle import TK, Turtle
+from turtle import TK, Turtle, TurtleScreen
 
 
 class DrawGossip:
@@ -19,9 +19,7 @@ class DrawGossip:
         self.pen.speed(1)
         self.pen.begin_fill()
 
-    def draw_gossip(
-        self, yo1: int, yo2: int, yo3: int, yo4: int, yo5: int, yo6: int
-    ) -> None:
+    def draw_gossip(self, yo1: int, yo2: int, yo3: int, yo4: int, yo5: int, yo6: int) -> None:
         """自下而上绘制六爻，每爻下移 10 像素。
 
         Args:
@@ -88,7 +86,7 @@ class DrawGossip:
         screen.onkey(self.close_window, "space")
         screen.listen()
 
-    def get_screen(self):
+    def get_screen(self) -> TurtleScreen:
         """返回当前画笔所在的 ``turtle`` 屏幕对象。"""
         return self.pen.getscreen()
 
@@ -100,9 +98,7 @@ class DrawGossip:
 def main() -> str:
     """交互式绘制一个正多边形装饰线，供手动调试使用。"""
     gossip = DrawGossip(Turtle())
-    side_length = gossip.get_screen().numinput(
-        "边长", "请输入边长（像素值）：", 0, 1, 500
-    )
+    side_length = gossip.get_screen().numinput("边长", "请输入边长（像素值）：", 0, 1, 500)
     lines_count = gossip.get_screen().numinput("边数", "多边形边的数量：", 3, 3, 100)
     gossip.draw_octagonal_line(side_length, lines_count)
     return "EVENTLOOP"

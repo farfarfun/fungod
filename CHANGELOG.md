@@ -5,6 +5,8 @@
 ### 新增
 
 - 补充 `tests/` 下的公开 API 测试，覆盖 `godwill()`、`BChanges.yoyo()` 的正常路径与边界（种子 0、种子不足/超量）。
+- 补充 `BChanges.change`、`BChanges.chaos`、`BChanges.draw_yo` 及 `DrawGossip` 全部公开方法的测试（绘图类用 mock 画笔隔离真实 turtle/tkinter GUI）。
+- 开发依赖加入 `ruff`，并补充 `[tool.ruff]` 配置；README 安装方式改为基于 `uv` 的说明（`uv sync` / `uv run pytest`）。
 
 ### 修复
 
@@ -12,6 +14,9 @@
 - 修复 `example/fungod_test.py`（原 `example/notegod_test.py`）中同样残留的 `gwill` 导入。
 - 修复 README 中用法示例的错误路径：`fungod/changes/GuaCi.py` 实际不存在，正确路径为 `fungod/conf/gua_ci.py`。
 - 移除模块导入时读取 `sys.argv` 并 `print` 的副作用（原 `BChanges.py` 顶层代码），改为 `godwill(seeds: list[int] | None = None)` 显式参数，避免 import 时产生不可控的诊断输出。
+- 删除过期的 `script/__version__.md`（`0.0.2`，与 `pyproject.toml` 的 `0.0.3` 不一致），版本号统一以 `pyproject.toml` 为唯一来源。
+- `DrawGossip.get_screen` 补充返回类型标注 `TurtleScreen`。
+- 修复 `BChanges.draw_yo` 阴阳爻判断与实现相反的 bug：`yo == 0`（阴爻）此前错误地画成单条通线，非 0（阳爻）反而画成断开两段线，与同文件 docstring、`godwill()` 的编码约定（`int(yo) & 1`）及 `DrawGossip.draw_yo` 的既有约定相矛盾；该方法此前无测试覆盖，也未被生产代码调用。
 
 ### 变更
 

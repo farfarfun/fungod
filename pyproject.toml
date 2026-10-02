@@ -17,4 +17,15 @@ build-backend = "hatchling.build"
 packages = ["src/fungod"]
 
 [dependency-groups]
-dev = ["pytest>=7.0"]
+dev = ["pytest>=7.0", "ruff>=0.14"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "W"]
+
+[tool.ruff.lint.per-file-ignores]
+# 六十四卦卦辞原文，长句不拆行以免破坏文本内容。
+"src/fungod/data/gua_ci/gwill_solution.py" = ["E501"]

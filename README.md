@@ -6,12 +6,19 @@
 
 ## 安装
 
-未发布到 PyPI，需要从源码安装：
+未发布到 PyPI，需要从源码安装，推荐用 [uv](https://docs.astral.sh/uv/) 管理虚拟环境与依赖：
 
 ```bash
 git clone https://github.com/farfarfun/fungod.git
 cd fungod
-pip install .
+uv sync              # 创建虚拟环境并安装运行时 + 开发依赖
+uv run pytest        # 运行测试
+```
+
+也可以只装运行时依赖并以当前目录作为包安装：
+
+```bash
+uv pip install .
 ```
 
 ## 用法示例
@@ -21,18 +28,18 @@ from fungod.changes.b_changes import godwill
 
 # 执行一次占卜，返回 (卦象编码, 卦名信息, 卦辞原文)
 key, name, solution = godwill()
-print(name)       # ['乾卦', '乾为天', '刚健中正']
-print(solution)   # 该卦的卦辞原文
+print(name)  # ['乾卦', '乾为天', '刚健中正']
+print(solution)  # 该卦的卦辞原文
 ```
 
 也可以直接查表：
 
 ```python
-from fungod.conf.gua_ci import gua_ci                          # 六十四卦卦名/断语字典
-from fungod.data.gua_ci.gwill_solution import solution_dict    # 每一卦的原文/白话解读
+from fungod.conf.gua_ci import gua_ci  # 六十四卦卦名/断语字典
+from fungod.data.gua_ci.gwill_solution import solution_dict  # 每一卦的原文/白话解读
 
-print(gua_ci["i_111111"])          # ['乾卦', '乾为天', '刚健中正']
-print(solution_dict["i_111111"])   # 乾卦原文
+print(gua_ci["i_111111"])  # ['乾卦', '乾为天', '刚健中正']
+print(solution_dict["i_111111"])  # 乾卦原文
 ```
 
 `fungod/conf/gua_ci.py` 和 `fungod/data/gua_ci/gwill_solution.py` 这两个数据模块可以正常单独导入使用。

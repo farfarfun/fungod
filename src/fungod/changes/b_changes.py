@@ -122,13 +122,13 @@ class BChanges:
             pen.penup()
             pen.goto(x, y)
             pen.pendown()
-            pen.forward(200)
-        else:
-            pen.penup()
-            pen.goto(x, y)
-            pen.pendown()
             pen.forward(90)
             pen.penup()
             pen.goto(x + 20, y)
             pen.pendown()
             pen.forward(90)
+        else:
+            pen.penup()
+            pen.goto(x, y)
+            pen.pendown()
+            pen.forward(200)
