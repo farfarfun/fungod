@@ -17,6 +17,7 @@
 - 删除过期的 `script/__version__.md`（`0.0.2`，与 `pyproject.toml` 的 `0.0.3` 不一致），版本号统一以 `pyproject.toml` 为唯一来源。
 - `DrawGossip.get_screen` 补充返回类型标注 `TurtleScreen`。
 - 修复 `BChanges.draw_yo` 阴阳爻判断与实现相反的 bug：`yo == 0`（阴爻）此前错误地画成单条通线，非 0（阳爻）反而画成断开两段线，与同文件 docstring、`godwill()` 的编码约定（`int(yo) & 1`）及 `DrawGossip.draw_yo` 的既有约定相矛盾；该方法此前无测试覆盖，也未被生产代码调用。
+- `godwill()` 的结果日志误用 stdlib logging 的 `%s` 占位符，farlog（loguru）不支持该语法，参数被静默丢弃、日志里只剩字面量 `%s`；改为 `{}` 占位符。
 
 ### 变更
 

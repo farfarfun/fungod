@@ -38,7 +38,7 @@ def godwill(seeds: list[int] | None = None) -> tuple[str, list[str], str]:
     gwill_name = gua_ci[gwill_key]
     gwill_solution = solution_dict[gwill_key]
 
-    logger.info("卦象编码: %s, 卦名: %s", gwill_key, gwill_name)
+    logger.info("卦象编码: {}, 卦名: {}", gwill_key, gwill_name)
 
     return gwill_key, gwill_name, gwill_solution
 
