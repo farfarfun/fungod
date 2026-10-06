@@ -2,6 +2,8 @@
 
 from unittest.mock import MagicMock
 
+import pytest
+
 from fungod.changes.b_changes import BChanges, godwill
 from fungod.conf.gua_ci import gua_ci
 from fungod.data.gua_ci.gwill_solution import solution_dict
@@ -100,3 +102,13 @@ def test_bchanges_draw_yo_yin_line_forwards_two_broken_segments():
 
     assert pen.forward.call_args_list == [((90,),), ((90,),)]
     pen.goto.assert_any_call(0, 0)
+
+
+def test_bchanges_draw_yo_legacy_name_warns_and_delegates():
+    bc = BChanges()
+    pen = MagicMock()
+
+    with pytest.deprecated_call(match=r"draw_yo\(\).*1\.0\.0"):
+        bc.drawYo(yo=1, pen=pen, x=1, y=2)
+
+    pen.forward.assert_called_once_with(200)

@@ -85,3 +85,33 @@ def test_close_window_raises_system_exit():
 
     with pytest.raises(SystemExit):
         drawer.close_window()
+
+
+def test_legacy_method_names_warn_and_delegate():
+    drawer, pen = _make_drawer()
+    pen.reset_mock()
+
+    with pytest.deprecated_call(match=r"draw_gossip\(\).*1\.0\.0"):
+        drawer.drawGossip(1, 0, 1, 0, 1, 0)
+    with pytest.deprecated_call(match=r"get_screen\(\).*1\.0\.0"):
+        assert drawer.getScreen() is pen.getscreen.return_value
+
+
+def test_legacy_modules_warn_and_reexport_public_objects():
+    import importlib
+    import sys
+
+    sys.modules.pop("fungod.changes.BChanges", None)
+    sys.modules.pop("fungod.changes.DrawGossip", None)
+    sys.modules.pop("fungod.conf.GuaCi", None)
+
+    with pytest.deprecated_call(match=r"b_changes.*1\.0\.0"):
+        legacy_b_changes = importlib.import_module("fungod.changes.BChanges")
+    with pytest.deprecated_call(match=r"draw_gossip.*1\.0\.0"):
+        legacy_draw_gossip = importlib.import_module("fungod.changes.DrawGossip")
+    with pytest.deprecated_call(match=r"gua_ci.*1\.0\.0"):
+        legacy_gua_ci = importlib.import_module("fungod.conf.GuaCi")
+
+    assert legacy_b_changes.BChanges.__name__ == "BChanges"
+    assert legacy_draw_gossip.DrawGossip is DrawGossip
+    assert legacy_gua_ci.gua_ci["i_111111"][0] == "乾卦"

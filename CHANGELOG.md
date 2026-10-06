@@ -27,8 +27,9 @@
 - 日志改用 `farlog`，替换原有的 `print()` 诊断输出。
 - 为所有公开类、函数、方法补充类型标注（3.10 风格）与中文 docstring。
 - 依赖调整：移除未使用的 `readme-renderer`（无版本下限且源码中未被引用），改为声明 `farlog>=1.1.8`。
-- 提交 `uv.lock` 以保证可复现构建。
+- 停止跟踪 `uv.lock`；构建依赖由 `pyproject.toml` 中的声明管理。
 
 ### 废弃
 
-- 无。
+- 旧模块路径 `fungod.changes.BChanges`、`fungod.changes.DrawGossip`、`fungod.conf.GuaCi` 仍可导入，但会发出 `DeprecationWarning`，请分别迁移到 `b_changes`、`draw_gossip`、`gua_ci`。
+- `BChanges.drawYo`、`DrawGossip.drawGossip`、`DrawGossip.drawOctagonalLine`、`DrawGossip.getScreen` 和 `DrawGossip.closeWindow` 仍可调用，但会发出 `DeprecationWarning`；请改用相应的 snake_case 名称。上述兼容接口将在 `1.0.0` 移除。

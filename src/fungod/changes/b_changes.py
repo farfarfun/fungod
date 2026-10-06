@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import random
+import warnings
 from typing import Any
 
 from farlog import getLogger
@@ -132,3 +133,12 @@ class BChanges:
             pen.goto(x, y)
             pen.pendown()
             pen.forward(200)
+
+    def drawYo(self, yo: int, pen: Any, x: float, y: float) -> None:
+        """Deprecated compatibility wrapper for :meth:`draw_yo`."""
+        warnings.warn(
+            "BChanges.drawYo() is deprecated; use BChanges.draw_yo() instead. It will be removed in 1.0.0.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        self.draw_yo(yo, pen, x, y)

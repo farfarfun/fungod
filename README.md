@@ -26,9 +26,10 @@ uv pip install .
 ```python
 from fungod.changes.b_changes import godwill
 
-# 执行一次占卜，返回 (卦象编码, 卦名信息, 卦辞原文)
+# 执行一次占卜，返回 (卦象编码, 卦名信息, 卦辞原文)。结果会随随机状态变化。
 key, name, solution = godwill()
-print(name)  # ['乾卦', '乾为天', '刚健中正']
+print(key)  # 形如 'i_101011' 的六位爻象编码
+print(name)  # 对应卦象的 [卦名, 别名, 断语]
 print(solution)  # 该卦的卦辞原文
 ```
 
