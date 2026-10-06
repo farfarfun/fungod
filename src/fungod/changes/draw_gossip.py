@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import warnings
 from turtle import TK, Turtle, TurtleScreen
 
 
@@ -93,6 +94,44 @@ class DrawGossip:
     def close_window(self) -> None:
         """关闭 turtle 绘图窗口。"""
         TK._exit(0)
+
+    def drawGossip(self, yo1: int, yo2: int, yo3: int, yo4: int, yo5: int, yo6: int) -> None:
+        """Deprecated compatibility wrapper for :meth:`draw_gossip`."""
+        warnings.warn(
+            "DrawGossip.drawGossip() is deprecated; use DrawGossip.draw_gossip() instead. It will be removed in 1.0.0.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        self.draw_gossip(yo1, yo2, yo3, yo4, yo5, yo6)
+
+    def drawOctagonalLine(self, side_length: float, lines_count: float) -> None:
+        """Deprecated compatibility wrapper for :meth:`draw_octagonal_line`."""
+        warnings.warn(
+            "DrawGossip.drawOctagonalLine() is deprecated; use "
+            "DrawGossip.draw_octagonal_line() instead. It will be removed in 1.0.0.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        self.draw_octagonal_line(side_length, lines_count)
+
+    def getScreen(self) -> TurtleScreen:
+        """Deprecated compatibility wrapper for :meth:`get_screen`."""
+        warnings.warn(
+            "DrawGossip.getScreen() is deprecated; use DrawGossip.get_screen() instead. It will be removed in 1.0.0.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.get_screen()
+
+    def closeWindow(self) -> None:
+        """Deprecated compatibility wrapper for :meth:`close_window`."""
+        warnings.warn(
+            "DrawGossip.closeWindow() is deprecated; use DrawGossip.close_window() instead. "
+            "It will be removed in 1.0.0.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        self.close_window()
 
 
 def main() -> str:
