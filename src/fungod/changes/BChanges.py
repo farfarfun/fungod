@@ -1,4 +1,4 @@
-"""Deprecated compatibility module for :mod:`fungod.changes.b_changes`."""
+"""已弃用的兼容模块：请改用 :mod:`fungod.changes.b_changes`，本模块将于 1.0.0 移除。"""
 
 import warnings
 
