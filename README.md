@@ -43,7 +43,7 @@ print(gua_ci["i_111111"])  # ['乾卦', '乾为天', '刚健中正']
 print(solution_dict["i_111111"])  # 乾卦原文
 ```
 
-`fungod/conf/gua_ci.py` 和 `fungod/data/gua_ci/gwill_solution.py` 这两个数据模块可以正常单独导入使用。
+`src/fungod/conf/gua_ci.py` 和 `src/fungod/data/gua_ci/gwill_solution.py` 这两个数据模块可以正常单独导入使用。
 
 ---
 

@@ -12,7 +12,8 @@
 
 - 修复 `fungod/changes/b_changes.py`（原 `BChanges.py`）中残留的历史导入 `from gwill.conf.GuaCi import *`，改为 `from fungod.conf.gua_ci import gua_ci`；`godwill()` 此前会直接抛出 `ModuleNotFoundError: No module named 'gwill'`，现已可正常调用。
 - 修复 `example/fungod_test.py`（原 `example/notegod_test.py`）中同样残留的 `gwill` 导入。
-- 修复 README 中用法示例的错误路径：`fungod/changes/GuaCi.py` 实际不存在，正确路径为 `fungod/conf/gua_ci.py`。
+- 修复 README 中用法示例的错误路径：`fungod/changes/GuaCi.py` 实际不存在，正确路径为 `src/fungod/conf/gua_ci.py`。
+- 修复 README 末尾数据模块说明里的仓库路径：源码迁为 `src/` 布局后，`fungod/conf/gua_ci.py`、`fungod/data/gua_ci/gwill_solution.py` 在仓库里定位不到，改为带 `src/` 前缀的真实路径。
 - 移除模块导入时读取 `sys.argv` 并 `print` 的副作用（原 `BChanges.py` 顶层代码），改为 `godwill(seeds: list[int] | None = None)` 显式参数，避免 import 时产生不可控的诊断输出。
 - 删除过期的 `script/__version__.md`（`0.0.2`，与 `pyproject.toml` 的 `0.0.3` 不一致），版本号统一以 `pyproject.toml` 为唯一来源。
 - `DrawGossip.get_screen` 补充返回类型标注 `TurtleScreen`。
@@ -26,6 +27,7 @@
 - 模块与公开方法统一改为 snake_case：`BChanges.py` → `changes/b_changes.py`、`DrawGossip.py` → `changes/draw_gossip.py`、`GuaCi.py` → `conf/gua_ci.py`；`drawYo` → `draw_yo`、`drawGossip` → `draw_gossip`、`drawOctagonalLine` → `draw_octagonal_line`、`getScreen` → `get_screen`、`closeWindow` → `close_window`。
 - 日志改用 `farlog`，替换原有的 `print()` 诊断输出。
 - 为所有公开类、函数、方法补充类型标注（3.10 风格）与中文 docstring。
+- 兼容模块 `BChanges.py`、`DrawGossip.py`、`GuaCi.py` 的模块 docstring 由英文改为中文，与仓库其余模块的注释语言保持一致（弃用迁移信息保留）。
 - 依赖调整：移除未使用的 `readme-renderer`（无版本下限且源码中未被引用），改为声明 `farlog>=1.1.8`。
 - 停止跟踪 `uv.lock`；构建依赖由 `pyproject.toml` 中的声明管理。
 
