@@ -3,7 +3,7 @@ name = "fungod"
 version = "0.0.3"
 description = "周易六十四卦占卜工具：基于大衍之数算法模拟蓍草占卜，生成六爻卦象并输出卦名与卦辞"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "牛哥", email = "farfarfun@qq.com" }]
@@ -21,7 +21,7 @@ dev = ["pytest>=7.0", "ruff>=0.14"]
 
 [tool.ruff]
 line-length = 120
-target-version = "py310"
+target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "W"]
